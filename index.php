@@ -1,6 +1,7 @@
 <?php
 $GLOBALS['rootpath']=$GLOBALS['rootpath'] ?? ".";
 require_once $GLOBALS['rootpath']."/inc/main.inc.php";
+require_once $GLOBALS['rootpath']."/inc/statblock.inc.php";
 
 ?>
 <ul><li>Spreadsheets
