@@ -1,0 +1,380 @@
+[
+  {
+    "family": "Animal, Dire",
+    "name": "Dire Boar",
+    "size": "Large",
+    "type": "Animal",
+    "subtype": "Dire",
+    "hd": 7,
+    "initiative": 0,
+    "speed": "40",
+    "movement": [{ "speed": 40 }],
+    "ac": 15,
+    "ac_modifiers": [
+      { "value": -1, "modifier": "size" },
+      { "value": 6, "modifier": "natural" }
+    ],
+    "baseattack": 5,
+    "grapple": 17,
+    "actions": [
+      {
+        "type": "Attack",
+        "ability": "Gore",
+        "bonus": 12,
+        "damagetype": "melee",
+        "damage": "1d8+12"
+      },
+      {
+        "type": "Special Attack",
+        "ability": "Ferocity",
+        "nature": "Extraordinary Ability",
+        "description": "A dire boar is such a tenacious combatant that it continues to fight without penalty even while disabled or dying."
+      }
+    ],
+    "space": 10,
+    "reach": 5,
+    "qualities": ["Low-light vision", "scent"],
+    "saves": { "fort": 8, "ref": 5, "will": 8 },
+    "stats": {
+      "str": 27,
+      "dex": 10,
+      "con": 17,
+      "int": 2,
+      "wis": 13,
+      "cha": 8
+    },
+    "skills": [{ "listen": 8 }, { "spot": 8 }],
+    "feats": ["Alertness", "Endurance", "Iron Will"],
+    "environment": "Temperate forests",
+    "organization": [
+      { "name": "Solitary", "low": 1, "high": 1 },
+      { "name": "herd", "low": 5, "high": 8 }
+    ],
+    "cr": 4,
+    "alignment": {
+      "frequency": "Always",
+      "structure": "neutral",
+      "moral": "neutral"
+    },
+    "advancement": [
+      { "lowhd": 7, "highhd": 16, "size": "Large" },
+      { "lowhd": 17, "highhd": 21, "size": "Huge" }
+    ],
+    "description": "Dire boars are omnivorous and spend most of their time rooting around, much as ordinary pigs do. They viciously attack anything that approaches them, however. Dire boars grow up to 12 feet long and weigh as much as 2,000 pounds.",
+    "combat": "A dire boar charges its opponent, trying to rip the target open with its tusks.",
+    "source": "SRD 3.5"
+  },
+  {
+    "family": "Halfling",
+    "name": "Lightfoot Halfling, 1st-Level Warrior",
+    "size": "Small",
+    "type": "Humanoid",
+    "subtype": "Halfling",
+    "hd": 1,
+    "initiative": 1,
+    "speed": "20",
+    "movement": [{ "speed": 20 }],
+    "ac": 16,
+    "ac_modifiers": [
+      { "value": 1, "modifier": "size" },
+      { "value": 1, "modifier": "Dex" },
+      { "value": 3, "modifier": "studded leather" },
+      { "value": 1, "modifier": "light shield" }
+    ],
+    "baseattack": 1,
+    "grapple": -3,
+    "actions": [
+      {
+        "type": "Attack",
+        "ability": "Longsword",
+        "bonus": 3,
+        "damagetype": "melee",
+        "damage": "1d6",
+        "critlow": 19,
+        "crithigh": 20,
+        "critx": 2
+      },
+      {
+        "type": "Attack",
+        "ability": "light crossbow",
+        "bonus": 3,
+        "damagetype": "ranged",
+        "damage": "1d6",
+        "critlow": 19,
+        "crithigh": 20,
+        "critx": 2
+      },
+      {
+        "type": "Special Attack",
+        "ability": "Halfling Traits",
+        "nature": "Extraordinary Ability",
+        "description": "Halflings possess the following racial traits.",
+        "modifiers": [
+          { "modify": "dex", "bonus": 2 },
+          { "modify": "str", "bonus": -2 },
+          { "name": "size", "modify": "ac", "bonus": 1 },
+          { "name": "size", "modify": "attack", "bonus": 1 },
+          { "name": "size", "modify": "hide", "bonus": 4 },
+          { "name": "size", "modify": "grapple", "bonus": -4 },
+          { "name": "size", "modify": "encumberance", "multiplier": 0.75 },
+          { "modify": "speed", "override": 20 },
+          { "name": "racial", "modify": "climb", "bonus": 2 },
+          { "name": "racial", "modify": "jump", "bonus": 2 },
+          { "name": "racial", "modify": "movesilently", "bonus": 2 },
+          { "name": "racial", "modify": "listen", "bonus": 2 },
+          { "name": "racial", "modify": "saves", "bonus": 1 },
+          {
+            "name": "morale",
+            "modify": "saves",
+            "condition": "vs. fear",
+            "bonus": 2,
+            "note": "This bonus stacks with the halfling’s +1 bonus on saving throws in general."
+          },
+          {
+            "name": "racial",
+            "modify": "attack",
+            "condition": "thrown weapons and slings",
+            "bonus": 1
+          },
+          {
+            "name": "automatic languages",
+            "languages": ["Common", "Halfling"]
+          },
+          {
+            "name": "bonus languages",
+            "languages": ["Dwarven", "Elven", "Gnome", "Goblin", "Orc"]
+          },
+          { "name": "favored class", "favored": "rogue" }
+        ]
+      }
+    ],
+    "space": 5,
+    "reach": 5,
+    "qualities": ["Halfling traits"],
+    "saves": { "fort": 4, "ref": 2, "will": 0 },
+    "stats": {
+      "str": 11,
+      "dex": 13,
+      "con": 12,
+      "int": 10,
+      "wis": 9,
+      "cha": 8
+    },
+    "skills": [
+      { "climb": 2 },
+      { "hide": 4 },
+      { "jump": -4 },
+      { "listen": 3 },
+      { "movesilently": 1 }
+    ],
+    "feats": ["Weapon Focus (longsword)"],
+    "environment": "Warm plains",
+    "organization": [
+      { "name": "Company", "low": 2, "high": 4 },
+      { "name": "Squad", "low": 11, "high": 20 },
+      { "name": "Band", "low": 30, "high": 100 }
+    ],
+    "cr": 0.5,
+    "treasure": "Standard",
+    "alignment": {
+      "frequency": "Usually",
+      "structure": "neutral",
+      "moral": "neutral"
+    },
+    "advancement": "By character class",
+    "leveladjust": 0,
+    "description": "Halflings stand about 3 feet tall and usually weigh between 30 and 35 pounds. They have brown or black eyes. Halfling men often have long sideburns, but beards are rare among them and mustaches almost unseen. Halflings prefer simple, comfortable, and practical clothes. Unlike members of most races, they prefer actual comfort to shows of wealth. Halflings reach adulthood in their early twenties and generally live into the middle of their second century. Halflings speak Halfling and Common. Most halflings encountered outside their home are warriors; the information in the statistics block is for one of 1st level.",
+    "combat": "Halflings prefer to fight defensively, usually hiding and launching ranged attacks as the foe approaches. Their tactics are very much like those of elves but place more emphasis on cover and concealment and less on mobility.",
+    "source": "SRD 3.5"
+  },
+  {
+    "family": "Animal",
+    "name": "Deinonychus",
+    "size": "Medium",
+    "type": "Animal",
+    "hd": "4d8+16 (34 hp)",
+    "initiative": 2,
+    "speed": 60,
+    "ac": 17,
+    "ac_modifiers": [
+      { "value": 2, "modifier": "Dex" },
+      { "value": 5, "modifier": "natural" }
+    ],
+    "baseattack": 3,
+    "grapple": 7,
+    "actions": [
+      {
+        "type": "Attack",
+        "ability": "Talons",
+        "bonus": 7,
+        "damagetype": "melee",
+        "damage": "1d8+4"
+      },
+      {
+        "type": "Attack",
+        "ability": "foreclaws",
+        "bonus": 2,
+        "damagetype": "melee",
+        "damage": "1d3+2"
+      },
+      {
+        "type": "Attack",
+        "ability": "bite",
+        "bonus": 2,
+        "damagetype": "melee",
+        "damage": "2d4+2"
+      },
+      {
+        "type": "Special Attack",
+        "ability": "Pounce",
+        "nature": "Extraordinary Ability",
+        "description": "If a deinonychus charges, it can make a full attack."
+      },
+      {
+        "type": "Modifier",
+        "modifiers": [
+          { "name": "racial", "modify": "hide", "bonus": 8 },
+          { "name": "racial", "modify": "jump", "bonus": 8 },
+          { "name": "racial", "modify": "listen", "bonus": 8 },
+          { "name": "racial", "modify": "spot", "bonus": 8 },
+          { "name": "racial", "modify": "survival", "bonus": 8 }
+        ]
+      }
+    ],
+    "space": 5,
+    "reach": 5,
+    "specialAttacks": ["Pounce"],
+    "qualities": ["Low-light vision", "scent"],
+    "saves": { "fort": 8, "ref": 6, "will": 2 },
+    "stats": {
+      "str": 19,
+      "dex": 15,
+      "con": 19,
+      "int": 2,
+      "wis": 12,
+      "cha": 10
+    },
+    "skills": [
+      { "hide": 12 },
+      { "jump": 26 },
+      { "listen": 10 },
+      { "spot": 10 },
+      { "survival": 10 }
+    ],
+    "feats": ["Run", "Track"],
+    "environment": "Warm forests",
+    "organization": [
+      { "name": "Solitary", "low": 1, "high": 1 },
+      { "name": "pair", "low": 2, "high": 2 },
+      { "name": "pack", "low": 3, "high": 6 }
+    ],
+    "cr": 3,
+    "treasure": "None",
+    "alignment": {
+      "frequency": "Always",
+      "structure": "neutral",
+      "moral": "neutral"
+    },
+    "advancement": [{ "lowhd": 4, "highhd": 8, "size": "Medium" }],
+    "description": "A deinonychus is bright green along its back and flanks, with a much lighter shade of the same color on its underside. The body has darker spots or stripes. Its tail extends straight out behind itself, held aloft by an intricate structure of bony supports, thus allowing its weight to be carried entirely by the back legs. It weighs about 600 pounds.",
+    "combat": "A deinonychus uses a combination of speed, grasping forearms, large teeth, and hind legs with ripping talons. It hunts by running at prey, leaping, and ripping with its rear talons as it claws and bites. The talons count as one attack. A deinonychus has a relatively large brain for a dinosaur, and its pack hunts with cunning tactics.",
+    "source": "SRD 3.5"
+  },
+  {
+    "family": "Unicorn",
+    "name": "Unicorn",
+    "size": "Large",
+    "type": "Magical Beast",
+    "hd": "4d10+20 (42 hp)",
+    "initiative": 3,
+    "speed": 60,
+    "ac": 18,
+    "ac_modifiers": [
+      { "value": 1, "modifier": "size" },
+      { "value": 3, "modifier": "dex" },
+      { "value": 6, "modifier": "natural" }
+    ],
+    "baseattack": 4,
+    "grapple": 13,
+    "actions": [
+      {
+        "type": "Attack",
+        "ability": "Horn",
+        "bonus": 11,
+        "damagetype": "melee",
+        "damage": "1d8+8"
+      },
+      {
+        "quantity": 2,
+        "type": "Attack",
+        "ability": "hooves",
+        "bonus": 3,
+        "damagetype": "melee",
+        "damage": "1d4+2"
+      },
+      {
+        "type": "Modifier",
+        "modifiers": [
+          {
+            "name": "automatic languages",
+            "languages": ["Common", "Sylvan"]
+          },
+          { "name": "racial", "modify": "movesilently", "bonus": 4 },
+          {
+            "name": "competence",
+            "modify": "survival",
+            "bonus": 3,
+            "condition": "within the boundaries of their forest"
+          }
+        ]
+      }
+    ],
+    "space": 10,
+    "reach": 5,
+    "qualities": [
+      "Darkvision 60 ft.",
+      "magic circle against evil",
+      "spell-like abilities",
+      "immunity to poison, charm, and compulsion",
+      "low-light vision",
+      "scent",
+      "wild empathy"
+    ],
+    "saves": { "fort": 9, "ref": 7, "will": 6 },
+    "stats": {
+      "str": 20,
+      "dex": 17,
+      "con": 21,
+      "int": 10,
+      "wis": 21,
+      "cha": 24
+    },
+    "skills": [
+      { "jump": 21 },
+      { "listen": 11 },
+      { "movesilently": 9 },
+      { "spot": 11 },
+      { "survival": 8 }
+    ],
+    "feats": ["Alertness", "Skill Focus (Survival)"],
+    "environment": "Temperate forests",
+    "organization": [
+      { "name": "Solitary", "low": 1, "high": 1 },
+      { "name": "pair", "low": 2, "high": 2 },
+      { "name": "grace", "low": 3, "high": 6 }
+    ],
+    "cr": 3,
+    "treasure": "None",
+    "alignment": {
+      "frequency": "Always",
+      "structure": "chaotic",
+      "moral": "good"
+    },
+    "advancement": [{ "lowhd": 4, "highhd": 8, "size": "Large" }],
+    "leveladjust": 4,
+    "cohort": true,
+    "description": "A unicorn has deep sea-blue, violet, brown, or fiery gold eyes. Males sport a white beard. A typical adult unicorn grows to 8 feet in length, stands 5 feet high at the shoulder, and weighs 1,200 pounds. Females are slightly smaller and slimmer than males.",
+    "combat": "Unicorns normally attack only when defending themselves or their forests. They either charge, impaling foes with their horns like lances, or strike with their hooves. The horn is a +3 magic weapon, though its power fades if removed from the unicorn.",
+    "source": "SRD 3.5"
+  }
+]

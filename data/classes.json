@@ -1,0 +1,315 @@
+[
+  {
+    "class": "Abberation",
+    "type": "Monster",
+    "description": "An aberration has a bizarre anatomy, strange abilities, an alien mindset, or any combination of the three.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Good" } }],
+    "skillpoints": 2,
+    "crperhd": 4,
+    "traits": [
+      { "trait": "Darkvision", "range": 60 },
+      { "trait": "proficient", "selection": "natural weapons" },
+      {
+        "trait": "proficient",
+        "selection": "simple weapons",
+        "condition": "generally humanoid in form"
+      },
+      {
+        "trait": "proficient",
+        "selection": "described weapon",
+        "condition": "generally humanoid in form"
+      },
+      {
+        "trait": "proficient",
+        "selection": "light armor",
+        "condition": "described with armor"
+      },
+      {
+        "trait": "proficient",
+        "selection": "shields",
+        "condition": "described with armor"
+      },
+      {
+        "trait": "proficient",
+        "selection": "medium armor",
+        "condition": "described with medium or heavy armor"
+      },
+      {
+        "trait": "proficient",
+        "selection": "heavy armor",
+        "condition": "described with heavy armor"
+      },
+      {
+        "trait": "Biology",
+        "description": "Aberrations eat, sleep, and breathe."
+      }
+    ]
+  },
+  {
+    "class": "Animal",
+    "type": "Monster",
+    "description": "An animal is a living, nonhuman creature, usually a vertebrate with no magical abilities and no innate capacity for language or culture.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [
+      {
+        "All": { "fort": "Good", "ref": "Good", "will": "Poor" },
+        "Dire": { "fort": "Good", "ref": "Good", "will": "Good" }
+      }
+    ],
+    "skillpoints": 2,
+    "crperhd": 3
+  },
+  {
+    "class": "Construct",
+    "type": "Monster",
+    "description": "A construct is an animated object or artificially constructed creature.",
+    "hdsize": 10,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Dragon",
+    "type": "Monster",
+    "description": "A dragon is a reptilelike creature, usually winged, with magical or unusual abilities.",
+    "hdsize": 12,
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Good", "ref": "Good", "will": "Good" } }],
+    "skillpoints": 6,
+    "crperhd": 2
+  },
+  {
+    "class": "Elemental",
+    "type": "Monster",
+    "description": "An elemental is a being composed of one of the four classical elements: air, earth, fire, or water.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [
+      {
+        "earth": { "fort": "Good", "ref": "Poor", "will": "Poor" },
+        "water": { "fort": "Good", "ref": "Poor", "will": "Poor" },
+        "air": { "fort": "Poor", "ref": "Good", "will": "Poor" },
+        "fire": { "fort": "Poor", "ref": "Good", "will": "Poor" }
+      }
+    ],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Fey",
+    "type": "Monster",
+    "description": "A fey is a creature with supernatural abilities and connections to nature or to some other force or place. Fey are usually human-shaped.",
+    "hdsize": 6,
+    "attackbonus": 0.5,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Good", "will": "Good" } }],
+    "skillpoints": 6,
+    "crperhd": 4
+  },
+  {
+    "class": "Giant",
+    "type": "Monster",
+    "description": "A giant is a humanoid-shaped creature of great strength, usually of at least Large size.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Good", "ref": "Poor", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Humanoid",
+    "type": "Monster",
+    "description": "A humanoid usually has two arms, two legs, and one head, or a humanlike torso, arms, and a head. Humanoids have few or no supernatural or extraordinary abilities, but most can speak and usually have well-developed societies. They usually are Small or Medium. Every humanoid creature also has a subtype.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "Usually": { "fort": "Poor", "ref": "Good", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Magical Beast",
+    "type": "Monster",
+    "description": "Magical beasts are similar to animals but can have Intelligence scores higher than 2. Magical beasts usually have supernatural or extraordinary abilities, but sometimes are merely bizarre in appearance or habits.",
+    "hdsize": 10,
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Good", "ref": "Good", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 3
+  },
+  {
+    "class": "Monstrous humanoid",
+    "type": "Monster",
+    "description": "Monstrous humanoids are similar to humanoids, but with monstrous or animalistic features. They often have magical abilities as well.",
+    "hdsize": 8,
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Good", "will": "Good" } }],
+    "skillpoints": 2,
+    "crperhd": 3
+  },
+  {
+    "class": "Ooze",
+    "type": "Monster",
+    "description": "An ooze is an amorphous or mutable creature, usually mindless.",
+    "hdsize": 10,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Outsider",
+    "type": "Monster",
+    "description": "An outsider is at least partially composed of the essence (but not necessarily the material) of some plane other than the Material Plane. Some creatures start out as some other type and become outsiders when they attain a higher (or lower) state of spiritual existence.",
+    "hdsize": 8,
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Good", "ref": "Good", "will": "Good" } }],
+    "skillpoints": 8,
+    "crperhd": 2
+  },
+  {
+    "class": "Plant",
+    "type": "Monster",
+    "description": "This type comprises vegetable creatures. Note that regular plants, such as one finds growing in gardens and fields, lack Wisdom and Charisma scores (see Nonabilities) and are not creatures, but objects, even though they are alive.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Good", "ref": "Poor", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Undead",
+    "type": "Monster",
+    "description": "Undead are once-living creatures animated by spiritual or supernatural forces.",
+    "hdsize": 12,
+    "attackbonus": 0.5,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Good" } }],
+    "skillpoints": 4,
+    "crperhd": 4
+  },
+  {
+    "class": "Vermin",
+    "type": "Monster",
+    "description": "This type includes insects, arachnids, other arthropods, worms, and similar invertebrates.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Good", "ref": "Poor", "will": "Poor" } }],
+    "skillpoints": 2,
+    "crperhd": 4
+  },
+  {
+    "class": "Warrior",
+    "type": "NPC",
+    "description": "NPC Warrior.",
+    "hdsize": 8,
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Good", "ref": "Poor", "will": "Poor" } }],
+    "classSkills": [
+      "climb",
+      "handleanimal",
+      "intimidate",
+      "jump",
+      "ride",
+      "swim"
+    ],
+    "skillpoints": 2
+  },
+  {
+    "class": "Expert",
+    "type": "NPC",
+    "description": "NPC Expert.",
+    "hdsize": 6,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Good" } }],
+    "skillpoints": 6
+  },
+  {
+    "class": "Commoner",
+    "type": "NPC",
+    "description": "NPC Commoner.",
+    "hdsize": 4,
+    "attackbonus": 0.5,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Poor" } }],
+    "classSkills": [
+      "climb",
+      "craft",
+      "handleanimal",
+      "jump",
+      "listen",
+      "profession",
+      "ride",
+      "spot",
+      "swim",
+      "userope"
+    ],
+    "skillpoints": 2
+  },
+  {
+    "class": "Aristocrat",
+    "type": "NPC",
+    "description": "NPC Aristocrat.",
+    "hdsize": 8,
+    "attackbonus": 0.75,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Good" } }],
+    "classSkills": [
+      "appraise",
+      "bluff",
+      "diplomacy",
+      "disguise",
+      "forgery",
+      "gatherinformation",
+      "handleanimal",
+      "intimidate",
+      "knowledge",
+      "listen",
+      "perform",
+      "ride",
+      "sensemotive",
+      "speaklanguage",
+      "spot",
+      "swim",
+      "survival"
+    ],
+    "skillpoints": 4
+  },
+  {
+    "class": "Adept",
+    "type": "NPC",
+    "description": "NPC Adept.",
+    "hdsize": 6,
+    "attackbonus": 0.5,
+    "saves": [{ "All": { "fort": "Poor", "ref": "Poor", "will": "Good" } }],
+    "classSkills": [
+      "concentration",
+      "craft",
+      "handleanimal",
+      "heal",
+      "knowledge",
+      "profession",
+      "spellcraft",
+      "survival"
+    ],
+    "skillpoints": 2
+  },
+  {
+    "class": "Barbarian",
+    "type": "PC Base",
+    "description": "Barbarian Base Class",
+    "hdsize": "12",
+    "attackbonus": 1,
+    "saves": [{ "All": { "fort": "Good", "ref": "Poor", "will": "Poor" } }],
+    "classSkills": [
+      "climb",
+      "craft",
+      "handleanimal",
+      "intimidate",
+      "jump",
+      "listen",
+      "ride",
+      "survival",
+      "swim"
+    ]
+  }
+]

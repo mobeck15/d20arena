@@ -1,0 +1,146 @@
+[
+  {
+    "size": "Fine",
+    "modifiers": [
+      { "str": -10 },
+      { "dex": 8 },
+      { "con": -2 },
+      {
+        "ac_modifiers": [
+          { "value": 8, "modifier": "size" },
+          { "value": 0, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": 8 },
+      { "cr": 0 }
+    ]
+  },
+  {
+    "size": "Diminutive",
+    "modifiers": [
+      { "str": -10 },
+      { "dex": 6 },
+      { "con": -2 },
+      {
+        "ac_modifiers": [
+          { "value": 4, "modifier": "size" },
+          { "value": 0, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": 4 },
+      { "cr": 0 }
+    ]
+  },
+  {
+    "size": "Tiny",
+    "modifiers": [
+      { "str": -8 },
+      { "dex": 4 },
+      { "con": -2 },
+      {
+        "ac_modifiers": [
+          { "value": 2, "modifier": "size" },
+          { "value": 0, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": 2 },
+      { "cr": 0 }
+    ]
+  },
+  {
+    "size": "Small",
+    "modifiers": [
+      { "str": -4 },
+      { "dex": 2 },
+      { "con": -2 },
+      {
+        "ac_modifiers": [
+          { "value": 1, "modifier": "size" },
+          { "value": 0, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": 1 },
+      { "cr": 0 }
+    ]
+  },
+  {
+    "size": "Medium",
+    "modifiers": [
+      { "str": 0 },
+      { "dex": 0 },
+      { "con": 0 },
+      {
+        "ac_modifiers": [
+          { "value": 0, "modifier": "size" },
+          { "value": 0, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": 0 },
+      { "cr": 0 }
+    ]
+  },
+  {
+    "size": "Large",
+    "modifiers": [
+      { "str": 8 },
+      { "dex": -2 },
+      { "con": 4 },
+      {
+        "ac_modifiers": [
+          { "value": -1, "modifier": "size" },
+          { "value": 2, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": -1 },
+      { "cr": 1 }
+    ]
+  },
+  {
+    "size": "Huge",
+    "modifiers": [
+      { "str": 16 },
+      { "dex": -4 },
+      { "con": 8 },
+      {
+        "ac_modifiers": [
+          { "value": -2, "modifier": "size" },
+          { "value": 5, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": -2 },
+      { "cr": 2 }
+    ]
+  },
+  {
+    "size": "Gargantuan",
+    "modifiers": [
+      { "str": 24 },
+      { "dex": -4 },
+      { "con": 12 },
+      {
+        "ac_modifiers": [
+          { "value": -4, "modifier": "size" },
+          { "value": 9, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": -4 },
+      { "cr": 3 }
+    ]
+  },
+  {
+    "size": "Colossal",
+    "modifiers": [
+      { "str": 32 },
+      { "dex": -4 },
+      { "con": 16 },
+      {
+        "ac_modifiers": [
+          { "value": -8, "modifier": "size" },
+          { "value": 14, "modifier": "Armor", "source": "Natural Armor" }
+        ]
+      },
+      { "attackbonus": -8 },
+      { "cr": 4 }
+    ]
+  }
+]
