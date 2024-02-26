@@ -15,11 +15,14 @@
     "web-vitals": "^2.1.4"
   },
   "scripts": {
-    "startdev": "concurrently \"npm run start-devapi\" \"npm run start-frontend\"",
-    "start": "concurrently \"npm run start-api\" \"npm run start-frontend\"",
-    "start-api": "node ddapi/server.js",
-    "start-devapi": "node ddapi/server.v1.js",
-    "start-frontend": "react-scripts start",
+    "xstartdev": "concurrently \"npm run start-devapi\" \"npm run start-react\"",
+    "xstart": "concurrently \"npm run start-api\" \"npm run start-react\"",
+    "xstart-api": "node ddapi/server.js",
+    "xstart-devapi": "node ddapi/server.v1.js",
+    "---": "-----------",
+    "start": "concurrently \"npm run start-php\" \"npm run start-react\"",
+    "start-php": "php -S localhost:8000",
+    "start-react": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

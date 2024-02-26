@@ -12,9 +12,24 @@ function App() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const response = await axios.get(
-          "http://localhost:5000/api/characters"
-        );
+        let baseURL;
+
+        // Check if the environment is development or production
+        if (process.env.NODE_ENV === "development") {
+          // Use localhost for development
+          baseURL = "http://localhost:8000/ddapi"; // Change port as needed
+        } else {
+          // Use production URL
+          baseURL = "http://dev.stuffiknowabout.com/ddapi";
+        }
+
+        // Construct the full URL for the API endpoint
+        const url = `${baseURL}/?api=characters&api_key=your_api_key1`;
+
+        // Make the API request
+        const response = await axios.get(url);
+
+        // Handle the response
         setData(response.data);
         setLoading(false);
       } catch (error) {
