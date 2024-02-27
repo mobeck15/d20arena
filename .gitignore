@@ -32,3 +32,6 @@ auth*.php
 data.json
 config.ini
 insertlog*.txt
+
+#PHPunit support and other composer files
+vendor
