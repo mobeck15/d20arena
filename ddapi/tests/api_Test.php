@@ -26,7 +26,7 @@ class CharacterTest extends TestCase
         ];
 
         // Include the PHP file with your character logic
-        include '..\index.php'; 
+        include 'ddapi\index.php'; 
 
         // Test each character's CRAdvancement
         foreach ($data as $character) {
