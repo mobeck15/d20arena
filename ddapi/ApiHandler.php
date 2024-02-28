@@ -1,0 +1,106 @@
+<?php
+require_once 'Characterapi.php';
+class ApiHandler
+{
+    private $validApiKeys;
+    private $jsonFiles;
+
+    public function __construct()
+    {
+        // Define your API keys (replace these with your actual API keys)
+        $this->validApiKeys = array(
+            'your_api_key1',
+            'your_api_key2',
+            // Add more API keys as needed
+        );
+
+        // Path to your JSON data files
+        $this->jsonFiles = array(
+            'characters' => '../data/characters.json',
+            'classes' => '../data/classes.json',
+            'sizedmg' => '../data/damagesize.json',
+            'sizes' => '../data/sizes.json',
+            // Add more API endpoints and their corresponding JSON files here
+        );
+    }
+
+    public function handleApiRequest($apiName)
+    {
+        // Check if the API key is provided in the request
+        if (!isset($_GET['api_key'])) {
+            $this->sendResponse(401, array('error' => 'API key is required'));
+            return;
+        }
+
+        // Validate the API key
+        $apiKey = $_GET['api_key'];
+        if (!in_array($apiKey, $this->validApiKeys)) {
+            $this->sendResponse(401, array('error' => 'Invalid API key'));
+            return;
+        }
+
+        // Check if the requested API name exists
+        if (array_key_exists($apiName, $this->jsonFiles)) {
+            $jsonFile = $this->jsonFiles[$apiName];
+
+            // Check if the file exists
+            if (file_exists($jsonFile)) {
+                // Read the contents of the JSON file
+                $jsonData = file_get_contents($jsonFile);
+
+                switch ($apiName) {
+                    case 'characters':
+                        $characterApi = new CharacterApi($this->jsonFiles['characters']);
+                        $jsonData = $characterApi->loadApi();
+                        if ($jsonData !== null) {
+                            $jsonData = $characterApi->processApiData($jsonData);
+                        } else {
+                            $this->sendResponse(404, array('error' => 'File not found'));
+                            return;
+                        }
+                        break;
+                }
+
+                // Set the appropriate CORS headers
+                $this->setCorsHeaders();
+
+                // Set the appropriate HTTP header
+                header('Content-Type: application/json');
+
+                // Output the JSON data
+                echo $jsonData;
+            } else {
+                // If the file doesn't exist, return an error message
+                $this->sendResponse(404, array('error' => 'File not found'));
+            }
+        } else {
+            // If the requested API name doesn't exist, return an error message
+            $this->sendResponse(404, array('error' => 'API not found'));
+        }
+    }
+
+    private function processCharacterData($jsonData)
+    {
+        //This got moved to charactersapi.php
+    }
+
+    private function setCorsHeaders()
+    {
+        // Set the appropriate CORS headers
+        header('Access-Control-Allow-Origin: *');
+        header('Access-Control-Allow-Methods: GET');
+        header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+    }
+
+    private function sendResponse($statusCode, $data)
+    {
+        // Set the appropriate HTTP response code
+        http_response_code($statusCode);
+
+        // Set the appropriate HTTP header
+        header('Content-Type: application/json');
+
+        // Output the JSON data
+        echo json_encode($data);
+    }
+}

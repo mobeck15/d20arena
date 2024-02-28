@@ -2,42 +2,66 @@
 
 use PHPUnit\Framework\TestCase;
 
-class CharacterTest extends TestCase
+require_once 'ddapi/ApiHandler.php'; // Include the class file
+
+class ApiHandlerTest extends TestCase
 {
-    public function testCharacterCRAdvancement()
+    private $apiHandler;
+
+    protected function setUp(): void
     {
-        // Mock data for testing
-        $data = [
-            [
-                'cr' => 1,
-                'advancement' => [
-                    ['highhd' => 5],
-                    ['highhd' => 7],
-                ]
-            ],
-            [
-                'cr' => 2,
-                'advancement' => [
-                    ['highhd' => 10],
-                    ['highhd' => 12],
-                ]
-            ],
-            // Add more test cases as needed
-        ];
+        $this->apiHandler = new ApiHandler();
+    }
 
-        // Include the PHP file with your character logic
-        include 'ddapi\index.php';
+    public function testHandleApiRequestWithValidApiKeyAndExistingApi()
+    {
+        $_GET['api'] = 'characters';
+        $_GET['api_key'] = 'your_api_key1';
 
-        // Test each character's CRAdvancement
-        foreach ($data as $character) {
-            // Modify character data as needed
-            $originalCR = $character['cr'];
-            $maxHD = max(array_column($character['advancement'], 'highhd'));
-            $expectedCRAdvancement = $originalCR + floor($maxHD / 4);
+        ob_start();
+        $this->apiHandler->handleApiRequest('characters');
+        $output = ob_get_clean();
 
-            // Call the logic to calculate CRAdvancement
-            $this->assertArrayHasKey('CRAdvancement', $character);
-            $this->assertEquals($expectedCRAdvancement, $character['CRAdvancement']);
-        }
+        $this->assertStringContainsString('"CRAdvancement"', $output);
+        $this->assertStringNotContainsString('"error"', $output);
+        $this->assertStringContainsString('"CRAdvancement":', $output);
+    }
+
+    public function testHandleApiRequestWithInvalidApiKey()
+    {
+        $_GET['api'] = 'characters';
+        $_GET['api_key'] = 'invalid_api_key';
+
+        ob_start();
+        $this->apiHandler->handleApiRequest('characters');
+        $output = ob_get_clean();
+
+        $this->assertStringContainsString('"error"', $output);
+        $this->assertStringContainsString('"Invalid API key"', $output);
+    }
+
+    public function testHandleApiRequestWithMissingApiKey()
+    {
+        $_GET['api'] = 'characters';
+
+        ob_start();
+        $this->apiHandler->handleApiRequest('characters');
+        $output = ob_get_clean();
+
+        $this->assertStringContainsString('"error"', $output);
+        $this->assertStringContainsString('"API key is required"', $output);
+    }
+
+    public function testHandleApiRequestWithNonExistingApi()
+    {
+        $_GET['api'] = 'non_existing_api';
+        $_GET['api_key'] = 'your_api_key1';
+
+        ob_start();
+        $this->apiHandler->handleApiRequest('non_existing_api');
+        $output = ob_get_clean();
+
+        $this->assertStringContainsString('"error"', $output);
+        $this->assertStringContainsString('"API not found"', $output);
     }
 }
