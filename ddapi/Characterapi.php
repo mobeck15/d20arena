@@ -3,26 +3,34 @@
 class CharacterApi
 {
     private $apiDataFile;
+    private $rawApiData;
+    private $decodedApiData;
+    private $calculatedApiData;
 
     public function __construct($apiDataFile)
     {
         $this->apiDataFile = $apiDataFile;
     }
 
-    public function processApiData($jsonData)
+    public function processApiData()
     {
+        if ($this->rawApiData == null) {
+            return null;
+        }
+
         // Decode the JSON data into a PHP associative array
-        $data = json_decode($jsonData, true);
+        $this->decodedApiData = json_decode($this->rawApiData, true);
 
         // Modify the data (e.g., add or remove elements, update values)
-        foreach ($data as &$character) {
+        foreach ($this->decodedApiData as &$character) {
             $character = $this->addTreasure($character);
             $character = $this->levelAdjustment($character);
             $character = $this->advancement($character);
         }
 
         // Encode the modified data back to JSON
-        return json_encode($data);
+        $this->calculatedApiData = json_encode($this->decodedApiData);
+        return $this->calculatedApiData;
     }
 
     private function advancement($character)
@@ -68,15 +76,20 @@ class CharacterApi
         return $character;
     }
 
-
+    public function getApiData()
+    {
+        $this->loadApi();
+        return $this->processApiData();
+    }
 
     public function loadApi()
     {
         // Load characters from JSON file
         if (file_exists($this->apiDataFile)) {
-            return file_get_contents($this->apiDataFile);
+            $this->rawApiData = file_get_contents($this->apiDataFile);
         } else {
-            return null;
+            $this->rawApiData = null;
         }
+        return $this->rawApiData;
     }
 }

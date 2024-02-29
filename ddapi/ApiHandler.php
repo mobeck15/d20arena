@@ -39,57 +39,54 @@ class ApiHandler
             return;
         }
 
+        $jsonData = $this->getApiData($apiName);
+
+        if ($jsonData == null) {
+            $this->sendResponse(404, array('error' => 'API not found'));
+            return;
+        }
+
+        // Set the headers
+        $this->setHeaders();
+
+        // Output the JSON data
+        echo $jsonData;
+    }
+
+    private function getApiData($apiName)
+    {
+        $jsonData = null;
+
         // Check if the requested API name exists
         if (array_key_exists($apiName, $this->jsonFiles)) {
             $jsonFile = $this->jsonFiles[$apiName];
 
             // Check if the file exists
             if (file_exists($jsonFile)) {
-                // Read the contents of the JSON file
-                $jsonData = file_get_contents($jsonFile);
-
                 switch ($apiName) {
                     case 'characters':
                         $characterApi = new CharacterApi($this->jsonFiles['characters']);
-                        $jsonData = $characterApi->loadApi();
-                        if ($jsonData !== null) {
-                            $jsonData = $characterApi->processApiData($jsonData);
-                        } else {
-                            $this->sendResponse(404, array('error' => 'File not found'));
-                            return;
-                        }
+                        $jsonData = $characterApi->getApiData();
+                        break;
+                    default:
+                        // Read the contents of the JSON file
+                        $jsonData = file_get_contents($jsonFile);
                         break;
                 }
-
-                // Set the appropriate CORS headers
-                $this->setCorsHeaders();
-
-                // Set the appropriate HTTP header
-                header('Content-Type: application/json');
-
-                // Output the JSON data
-                echo $jsonData;
-            } else {
-                // If the file doesn't exist, return an error message
-                $this->sendResponse(404, array('error' => 'File not found'));
             }
-        } else {
-            // If the requested API name doesn't exist, return an error message
-            $this->sendResponse(404, array('error' => 'API not found'));
         }
+        return $jsonData;
     }
 
-    private function processCharacterData($jsonData)
-    {
-        //This got moved to charactersapi.php
-    }
-
-    private function setCorsHeaders()
+    private function setHeaders()
     {
         // Set the appropriate CORS headers
         header('Access-Control-Allow-Origin: *');
         header('Access-Control-Allow-Methods: GET');
         header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept');
+
+        // Set the appropriate HTTP header
+        header('Content-Type: application/json');
     }
 
     private function sendResponse($statusCode, $data)
