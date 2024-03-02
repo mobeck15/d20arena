@@ -1,5 +1,6 @@
 <?php
-require_once 'Characterapi.php';
+require_once 'CharacterApi.php';
+require_once 'ClassesApi.php';
 class ApiHandler
 {
     private $validApiKeys;
@@ -67,6 +68,10 @@ class ApiHandler
                     case 'characters':
                         $characterApi = new CharacterApi($this->jsonFiles['characters']);
                         $jsonData = $characterApi->getApiData();
+                        break;
+                    case 'classes':
+                        $classesApi = new ClassesApi($this->jsonFiles['classes']);
+                        $jsonData = $classesApi->getApiData();
                         break;
                     default:
                         // Read the contents of the JSON file

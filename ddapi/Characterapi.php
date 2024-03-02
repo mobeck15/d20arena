@@ -1,36 +1,25 @@
 <?php
-
-class CharacterApi
+require_once 'ApiProcessor.php';
+require_once 'ClassesApi.php';
+class CharacterApi extends ApiProcessor
 {
-    private $apiDataFile;
-    private $rawApiData;
-    private $decodedApiData;
-    private $calculatedApiData;
+    private $classData;
 
-    public function __construct($apiDataFile)
+    protected function modifyApiNode($character)
     {
-        $this->apiDataFile = $apiDataFile;
+        $character = $this->addTreasure($character);
+        $character = $this->levelAdjustment($character);
+        $character = $this->advancement($character);
+        $character = $this->classInfo($character);
+        return $character;
     }
 
-    public function processApiData()
+    private function classInfo($character)
     {
-        if ($this->rawApiData == null) {
-            return null;
-        }
+        //TODO: type is not a key in classdata it is just a list. need to get the class to return an indexed list.
+        $character['classInfo'] = $this->classData[$character['type']];
 
-        // Decode the JSON data into a PHP associative array
-        $this->decodedApiData = json_decode($this->rawApiData, true);
-
-        // Modify the data (e.g., add or remove elements, update values)
-        foreach ($this->decodedApiData as &$character) {
-            $character = $this->addTreasure($character);
-            $character = $this->levelAdjustment($character);
-            $character = $this->advancement($character);
-        }
-
-        // Encode the modified data back to JSON
-        $this->calculatedApiData = json_encode($this->decodedApiData);
-        return $this->calculatedApiData;
+        return $character;
     }
 
     private function advancement($character)
@@ -44,8 +33,10 @@ class CharacterApi
             $maxHD = max(array_column($character['advancement'], 'highhd'));
         }
 
+        $CrInterval = $this->classData[$character['type']]['crperhd'];
+        $CrInterval = 4;
         // Calculate CRIncrease and CRAdvancement
-        $CRIncrease = floor($maxHD / 4);
+        $CRIncrease = floor($maxHD / $CrInterval);
         $CRAdvancement = $character['cr'] + $CRIncrease;
 
         // Add 'CRAdvancement' property to the character
@@ -74,22 +65,5 @@ class CharacterApi
         }
 
         return $character;
-    }
-
-    public function getApiData()
-    {
-        $this->loadApi();
-        return $this->processApiData();
-    }
-
-    public function loadApi()
-    {
-        // Load characters from JSON file
-        if (file_exists($this->apiDataFile)) {
-            $this->rawApiData = file_get_contents($this->apiDataFile);
-        } else {
-            $this->rawApiData = null;
-        }
-        return $this->rawApiData;
     }
 }
