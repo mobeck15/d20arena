@@ -19,8 +19,8 @@ export function formatModifier(number) {
 
 export function getSpecialAttackAbilities(actions) {
   const specialAttacks = actions
-    .filter((action) => action.type === "Special Attack")
-    .map((action) => action.ability);
+    .filter(action => action.type === "Special Attack")
+    .map(action => action.ability);
 
   return specialAttacks.join(", ");
 }
@@ -29,7 +29,7 @@ export function formatOrganization(organization) {
   // Sort organizations by the low value
   organization.sort((a, b) => a.low - b.low);
 
-  const formattedOrganizations = organization.map((org) => {
+  const formattedOrganizations = organization.map(org => {
     if (org.low === org.high) {
       return `${org.name} (${org.low})`;
     } else {
@@ -69,7 +69,7 @@ export function formatAdvancement(advancement) {
   }
 
   // If advancement is an array, proceed with formatting
-  const formattedAdvancements = advancement.map((adv) => {
+  const formattedAdvancements = advancement.map(adv => {
     return `${adv.lowhd}-${adv.highhd} HD (${adv.size})`;
   });
 
@@ -78,7 +78,7 @@ export function formatAdvancement(advancement) {
 
 export function formatSkills(skills) {
   return skills
-    .map((skill) => {
+    .map(skill => {
       const skillName = Object.keys(skill)[0]; // Extract skill name
       const skillValue = skill[skillName]; // Extract skill value
 
@@ -95,13 +95,17 @@ export function formatSkills(skills) {
 
 export function formatActions(actions) {
   // Filter actions with type "Attack"
-  const attackActions = actions.filter((action) => action.type === "Attack");
+  const attackActions = actions.filter(action => action.type === "Attack");
 
   // Format filtered attack actions
   return attackActions
-    .map((action) => {
+    .map(action => {
       const { ability, bonus, damagetype, damage } = action;
       return `${ability} +${bonus} ${damagetype} (${damage})`;
     })
     .join(" or ");
+}
+
+export function statBonus(number) {
+  return Math.floor(number / 2) - 5;
 }

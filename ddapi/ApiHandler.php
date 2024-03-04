@@ -40,18 +40,25 @@ class ApiHandler
             return;
         }
 
-        $jsonData = $this->getApiData($apiName);
+        // Check if it's a POST request
+        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            // Handle POST requests
+            $this->handlePostRequest($apiName);
+        } else {
+            // Handle GET requests
+            $jsonData = $this->getApiData($apiName);
 
-        if ($jsonData == null) {
-            $this->sendResponse(404, array('error' => 'API not found'));
-            return;
+            if ($jsonData == null) {
+                $this->sendResponse(404, array('error' => 'API not found'));
+                return;
+            }
+
+            // Set the headers
+            $this->setHeaders();
+
+            // Output the JSON data
+            echo $jsonData;
         }
-
-        // Set the headers
-        $this->setHeaders();
-
-        // Output the JSON data
-        echo $jsonData;
     }
 
     private function getApiData($apiName)
@@ -71,7 +78,7 @@ class ApiHandler
                         break;
                     case 'classes':
                         $classesApi = new ClassesApi($this->jsonFiles['classes']);
-                        $jsonData = $classesApi->getApiData();
+                        $jsonData = $classesApi->getApiData("class");
                         break;
                     default:
                         // Read the contents of the JSON file
@@ -104,5 +111,34 @@ class ApiHandler
 
         // Output the JSON data
         echo json_encode($data);
+    }
+
+    private function handlePostRequest($apiName)
+    {
+        // Check if the API name is valid (you can add more validation logic as needed)
+        if ($apiName === 'characters') {
+            // Retrieve the POST data
+            $postData = file_get_contents('php://input');
+
+            $newCharacter = Utility::parseStatBlock($postData, false);
+            //$newCharacter = json_decode($jsonText, true); // Assuming the data is sent as JSON
+
+            // Validate the data (you can add more validation logic here)
+
+            // Append the new character data to the JSON file
+            $jsonFile = '../data/characters.json';
+            $currentData = json_decode(file_get_contents($jsonFile), true);
+            $currentData[] = $newCharacter;
+            //file_put_contents($jsonFile, json_encode($currentData, JSON_PRETTY_PRINT));
+
+            // Send a success response
+            $this->sendResponse(200, array(
+                'message' => 'New character added successfully',
+                'character' => $newCharacter
+            ));
+        } else {
+            // Handle POST requests for other API names (if needed)
+            $this->sendResponse(404, array('error' => 'Invalid API name'));
+        }
     }
 }

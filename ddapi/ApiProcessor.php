@@ -11,7 +11,7 @@ class ApiProcessor
         $this->apiDataFile = $apiDataFile;
     }
 
-    public function processApiData()
+    public function processApiData($key = null)
     {
         if ($this->rawApiData == null) {
             return null;
@@ -20,14 +20,33 @@ class ApiProcessor
         // Decode the JSON data into a PHP associative array
         $this->decodedApiData = json_decode($this->rawApiData, true);
 
+        $newData = null;
+        $keyCounts = [];
         // Modify the data (e.g., add or remove elements, update values)
-        foreach ($this->decodedApiData as &$node) {
+        foreach ($this->decodedApiData as $node) {
             $node = $this->modifyApiNode($node);
-        }
 
-        // Encode the modified data back to JSON
-        $this->calculatedApiData = json_encode($this->decodedApiData);
-        return $this->calculatedApiData;
+            if ($key != null) {
+                $useKey = $node[$key];
+
+                // Check if the key already exists in the counts array
+                if (isset($keyCounts[$useKey])) {
+                    // Increment the count for this key
+                    $keyCounts[$useKey]++;
+
+                    // Append the count to the key
+                    $useKey = $useKey . '(' . $keyCounts[$useKey] . ')';
+                } else {
+                    $keyCounts[$useKey] = 1;
+                }
+
+                $newData[$useKey] = $node;
+            } else {
+                $newData[] = $node;
+            }
+        }
+        $this->decodedApiData = $newData;
+        return $newData;
     }
 
     protected function modifyApiNode($node)
@@ -36,10 +55,44 @@ class ApiProcessor
         return $node;
     }
 
-    public function getApiData()
+    protected function renameKey($node, $oldKey, $newKey)
+    {
+        // Check if the old key exists in the array
+        if (!array_key_exists($oldKey, $node)) {
+            return $node; // Return the original array if the old key doesn't exist
+        }
+
+        // Create a new array to store the updated elements
+        $newNode = [];
+
+        // Iterate through the original array
+        foreach ($node as $key => $value) {
+            // If it's the old key, replace it with the new key
+            if ($key === $oldKey) {
+                $newNode[$newKey] = $value;
+            } else {
+                // Otherwise, keep the original key-value pair
+                $newNode[$key] = $value;
+            }
+        }
+
+        return $newNode;
+    }
+
+
+    public function getApiData($key = null)
     {
         $this->loadApi();
-        return $this->processApiData();
+
+        // Encode the modified data back to JSON
+        $this->calculatedApiData = json_encode($this->processApiData($key), JSON_PRETTY_PRINT);
+        return $this->calculatedApiData;
+    }
+
+    public function getData($key = null)
+    {
+        $this->loadApi();
+        return $this->processApiData($key);
     }
 
     public function loadApi()

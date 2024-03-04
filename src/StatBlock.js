@@ -10,6 +10,7 @@ import {
   formatAdvancement,
   formatSkills,
   formatActions,
+  statBonus
 } from "./utils";
 import SpecialAttacks from "./SpecialAttacks";
 
@@ -28,7 +29,7 @@ function StatBlock({ character }) {
               (character.subtype ? " (" + character.subtype + ")" : "")
             }
           />
-          <StatRow label="Hit Dice:" value={character.hd} />
+          <StatRow label="Hit Dice:" value={character.hp.text} />
           <StatRow
             label="Initiative:"
             value={formatModifier(character.initiative)}
@@ -80,17 +81,17 @@ function StatBlock({ character }) {
             label="Abilities:"
             value={
               "Str " +
-              formatModifier(character.stats.str) +
+              formatModifier(character.stats.str.score) +
               ", Dex " +
-              formatModifier(character.stats.dex) +
+              formatModifier(character.stats.dex.score) +
               ", Con " +
-              formatModifier(character.stats.con) +
+              formatModifier(character.stats.con.score) +
               ", Int " +
-              formatModifier(character.stats.int) +
+              formatModifier(character.stats.int.score) +
               ", Wis " +
-              formatModifier(character.stats.wis) +
+              formatModifier(character.stats.wis.score) +
               ", Cha " +
-              formatModifier(character.stats.cha)
+              formatModifier(character.stats.cha.score)
             }
           />
           <StatRow label="Skills:" value={formatSkills(character.skills)} />
