@@ -20,9 +20,36 @@ class CharacterApi extends ApiProcessor
             ->advancement($character)
             ->classInfo($character)
             ->stats($character)
-            ->hitPoints($character);
+            ->hitPoints($character)
+            ->movement($character);
 
         return $character;
+    }
+
+    private function movement(&$character)
+    {
+        $movement = '';
+
+        foreach ($character['movement'] as $key => $value) {
+            // Extract speed and agility from each movement type
+            $speed = $value['speed'];
+            $agility = isset($value['agility']) ? $value['agility'] : '';
+
+            // Append speed and agility to the movement text
+            $movement .= $speed . " ft. (" . ($value['speed'] / 5) . " squares)";
+
+            // Add agility in parentheses if available
+            if (!empty($agility)) {
+                $movement .= " ({$agility})";
+            }
+
+            // Add comma and space if it's not the last movement type
+            if ($key !== array_key_last($character['movement'])) {
+                $movement .= ', ';
+            }
+        }
+        $character['movement']['text'] = $movement;
+        return $this;
     }
 
     private function classInfo(&$character)

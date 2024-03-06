@@ -34,7 +34,7 @@ function StatBlock({ character }) {
             label="Initiative:"
             value={formatModifier(character.initiative)}
           />
-          <StatRow label="Speed:" value={formatSpace(character.speed)} />
+          <StatRow label="Speed:" value={character.movement.text} />
           <StatRow label="Armor Class:" value={character.ac} />
           <StatRow
             label="Base Attack/Grapple:"

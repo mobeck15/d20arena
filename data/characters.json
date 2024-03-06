@@ -7,12 +7,9 @@
     "subtype": "Dire",
     "hd": 7,
     "initiative": 0,
-    "speed": "40",
-    "movement": [
-      {
-        "speed": 40
-      }
-    ],
+    "movement": {
+      "land": { "speed": 40 }
+    },
     "ac": 15,
     "ac_modifiers": [
       {
@@ -109,12 +106,9 @@
     "subtype": "Halfling",
     "hd": 1,
     "initiative": 1,
-    "speed": "20",
-    "movement": [
-      {
-        "speed": 20
-      }
-    ],
+    "movement": {
+      "land": { "speed": 20 }
+    },
     "ac": 16,
     "ac_modifiers": [
       {
@@ -325,7 +319,7 @@
     "type": "Animal",
     "hd": 4,
     "initiative": 2,
-    "speed": 60,
+    "movement": { "land": { "speed": 60 } },
     "ac": 17,
     "ac_modifiers": [
       {
@@ -476,7 +470,7 @@
     "type": "Magical Beast",
     "hd": 4,
     "initiative": 3,
-    "speed": 60,
+    "movement": { "land": { "speed": 60 } },
     "ac": 18,
     "ac_modifiers": [
       {

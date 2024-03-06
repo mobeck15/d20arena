@@ -43,26 +43,18 @@ class Utility
         $size = $sizetype[0];
         $type = implode(" ", array_slice($sizetype, 1));
 
-        // Extract speed and swim speed
-        $speed = $swimSpeed = 0;
-        if (preg_match('/(\d+)\s*ft\./', $lines["speed"], $matches)) {
-            $speed = (int)$matches[1];
-        }
-
-        //TODO: this is not working yet! moovement array is not properly captureing all potential movement types.
         $movement = [];
-        if (preg_match_all('/(\d+)\s*ft\.(\s*(?:\(\d+\s+squares\))?)?/', $lines["speed"], $matches, PREG_SET_ORDER)) {
+        if (preg_match_all('/([a-z]*) ?(\d+) ft. ?\(?([a-z]*)\)?/', $lines["speed"], $matches, PREG_SET_ORDER)) {
+            //$movement = $matches;
             foreach ($matches as $match) {
-                $value = (int)$match[1]; // Extract speed value
-                if (isset($match[2]) && preg_match('/\((\d+)\s+squares\)/', $match[2], $squaresMatch)) {
-                    // If squares information is available, use it as speed type
-                    $type = 'speed';
-                    $value = (int)$squaresMatch[1];
-                } else {
-                    // Otherwise, default to 'speed'
-                    $type = 'speed';
+                $usekey = "land";
+                if ($match[1] <> "") {
+                    //$match[1] = 'speed';
+                    $usekey = $match[1];
                 }
-                $movement[$type] = $value; // Add speed value to movement array with the appropriate type
+                $movement[$usekey]['speed'] = $match[2];
+                if ($match[3] <> "")
+                    $movement[$usekey]['agility'] = $match[3];
             }
         }
 
@@ -73,7 +65,6 @@ class Utility
             "type" => $type,
             "hd" => $hd,
             "initiative" => intval($lines["initiative"]),
-            "speed" => $speed,
             "movement" => $movement,
             "ac" => "",
             "ac_modifiers" => [],
